@@ -21,7 +21,7 @@ class _CityCardState extends State<CityCard> {
           filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
           child: Container(
             width: 380,
-            height: 190,
+            height: 180,
             decoration: BoxDecoration(
                 color: Colors.white.withOpacity(0.2),
                 borderRadius:
@@ -31,7 +31,7 @@ class _CityCardState extends State<CityCard> {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 2.0,horizontal: 4),
+                    padding: const EdgeInsets.only(top: 4.0,left: 4,right: 4),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -57,11 +57,11 @@ class _CityCardState extends State<CityCard> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 22.0,vertical: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 22.0,vertical: 2),
                     child: Row(
                       children: [
                         Expanded(child: Text("Rajkot, Gujarat",style: GoogleFonts.nunito(fontSize: 20,color: Colors.white)),flex:3),
-                        Expanded(child: Text("Mid Rain",style: GoogleFonts.nunito(fontSize: 13,color: Colors.white)),flex:1),
+                        Expanded(child: Text("Mid Rain",style: GoogleFonts.nunito(fontSize: 15,color: Colors.white)),flex:1),
                       ],
                     ),
                   ),
