@@ -52,7 +52,8 @@ Map<int, Map<String, String>> weatherCodes = {
   57: {
     "description": "Freezing Drizzle: Dense intensity",
     "dayimg": "assets/images/large/51040_snow_light_mostly_cloudy_large@2x.png",
-    "nightimg": "assets/images/large/51041_snow_light_mostly_cloudy_large@2x.png"
+    "nightimg":
+        "assets/images/large/51041_snow_light_mostly_cloudy_large@2x.png"
   },
   61: {
     "description": "Rain: Slight intensity",
@@ -138,5 +139,27 @@ Map<int, Map<String, String>> weatherCodes = {
     "description": "Thunderstorm with heavy hail",
     "dayimg": "assets/images/large/71150_wintry_mix_large@2x.png",
     "nightimg": "assets/images/large/71150_wintry_mix_large@2x.png"
+  },
+  // coustom made:
+  1001: {
+    "description": "Mist",
+    "dayimg": "assets/images/mist.png",
+    "nightimg": "assets/images/mist.png"
+  },
+  1002: {
+    "description": "Smoke",
+    "dayimg": "assets/images/smoke.png",
+    "nightimg": "assets/images/smoke.png"
+  },
+
+  1004: {
+    "description": "Sand/Dust Whirls",
+    "dayimg": "assets/images/sand.png",
+    "nightimg": "assets/images/sand.png"
+  },
+  10010: {
+    "description": "Tornado",
+    "dayimg": "assets/images/tornado.png",
+    "nightimg": "assets/images/tornado.png"
   },
 };
