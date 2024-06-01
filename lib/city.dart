@@ -22,7 +22,8 @@ class _CityState extends State<City> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             leading: Icon(CupertinoIcons.back,color: Colors.white,),
-            title: Text("City",style: GoogleFonts.nunito(color: Colors.white),),
+            title: Text("City",style: GoogleFonts.nunito(color: Colors.white,fontSize: 26),),
+            centerTitle: true,
             backgroundColor: Colors.transparent,
             leadingWidth: 50,
             titleSpacing: 5,
