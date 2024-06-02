@@ -44,7 +44,7 @@ class _CityCardState extends State<CityCard> {
                             SizedBox(width: 20,),
                             Container(
                               child: ClipRRect(
-                                child: Image.asset(snapshot.data['cond']['nightimg'].toString()),
+                                child: Image.asset(snapshot.data['cond']['dayimg'].toString()),
                               ),
                               height: 100,
                             ),
