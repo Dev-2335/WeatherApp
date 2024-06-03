@@ -1,6 +1,25 @@
 import 'package:geocoding/geocoding.dart';
 import 'package:intl/intl.dart';
 import 'package:weatherapp/model/condition.dart';
+import 'package:geocoding/geocoding.dart';
+
+Future<Map<String, double>> getAddressToCoordinates(String address) async {
+  List<Location> locations = await locationFromAddress(address);
+  Map<String, double> coordinates = {
+    "latitude": locations.last.latitude,
+    "longitude": locations.last.longitude
+  };
+  return coordinates;
+}
+
+Future<Map<String, String>> getCoordinatesToAddress(Map<String, double> coordinates) async {
+  List<Placemark> placemarks = await placemarkFromCoordinates(coordinates['latitude']!, coordinates['longitude']!);
+  Map<String, String> Address = {
+    "country": placemarks.reversed.last.country.toString(),
+    "city": placemarks.reversed.last.locality.toString()
+  };
+  return Address;
+}
 
 var group0 = [800];
 var group1 = [801];

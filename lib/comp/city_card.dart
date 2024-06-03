@@ -7,8 +7,8 @@ import 'package:weatherapp/model/city_model.dart';
 
 class CityCard extends StatefulWidget {
   var lat;
-  var lot;
-  CityCard({super.key,required this.lat,required this.lot});
+  var lon;
+  CityCard({super.key,required this.lat,required this.lon});
 
   @override
   State<CityCard> createState() => _CityCardState();
@@ -19,7 +19,7 @@ class _CityCardState extends State<CityCard> {
   Widget build(BuildContext context) {
     var img;
     return FutureBuilder(
-      future: cityData(widget.lat, widget.lot),
+      future: cityData(widget.lat, widget.lon),
       builder: (context, snapshot){
         print(snapshot.data);
         if(snapshot.hasData){
@@ -75,9 +75,13 @@ class _CityCardState extends State<CityCard> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 22.0,vertical: 2),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Expanded(child: Text("Rajkot, Gujarat",style: GoogleFonts.nunito(fontSize: 20,color: Colors.white)),flex:5),
-                              Expanded(child: Text(snapshot.data['cond']['description'].toString(),style: GoogleFonts.nunito(fontSize: 14,color: Colors.white)),flex:2),
+                              Text(snapshot.data['city']+","+snapshot.data['country'],style: GoogleFonts.nunito(fontSize: 18,color: Colors.white)),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text(snapshot.data['cond']['description'].toString(),style: GoogleFonts.nunito(fontSize: 14,color: Colors.white)),
+                              ),
                             ],
                           ),
                         ),
