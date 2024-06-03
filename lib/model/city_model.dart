@@ -30,5 +30,24 @@ Future<dynamic> cityData(var lat,var lon) async {
 }
 
 List<dynamic> saved_citys=[
-  {}
+  {
+    "city":"Rajkot",
+    "lat":22.2916,
+    "lon":70.7932
+  },
+  {
+    "city":"Darshan",
+    "lat":22.4319,
+    "lon":70.7844
+  },
+  {
+    "city":"Ahemdabad",
+    "lat":23.0225,
+    "lon":72.5714
+  },
+  {
+    "city":"Dubai",
+    "lat":25.2048,
+    "lon":55.2708
+  },
 ];

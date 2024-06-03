@@ -47,9 +47,9 @@ class _CityState extends State<City> {
                   SizedBox(height: 5,),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: 5,
+                      itemCount: saved_citys.length,
                       itemBuilder: (context, index) {
-                        return CityCard();
+                        return CityCard(lat: saved_citys[index]["lat"], lot: saved_citys[index]["lon"],);
                       },
                     ),
                   )
