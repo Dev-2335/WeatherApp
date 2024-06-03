@@ -1,3 +1,6 @@
+import 'package:geocoding/geocoding.dart';
+import 'package:intl/intl.dart';
+
 var group0 = [800];
 var group1 = [801];
 var group2 = [802];
@@ -126,4 +129,55 @@ int codeConverter(int code) {
     }
   }
   return -1;
+}
+
+Future<Map<String, double>> getAddressToCoordinates(String address) async {
+  List<Location> locations = await locationFromAddress(address);
+  Map<String, double> coordinates = {
+    "latitude": locations.last.latitude,
+    "longitude": locations.last.longitude
+  };
+  return coordinates;
+}
+
+Future<Map<String, String>> getCoordinatesToAddress(
+    Map<String, double> coordinates) async {
+  List<Placemark> placemarks = await placemarkFromCoordinates(
+      coordinates['latitude']!, coordinates['longitude']!);
+  Map<String, String> Address = {
+    "country": placemarks.reversed.last.country.toString(),
+    "city": placemarks.reversed.last.locality.toString()
+  };
+  return Address;
+}
+
+List<int> getRangeIndices(List<dynamic> timeList) {
+  DateTime currentTime = DateTime.now();
+  DateTime endTime = currentTime.add(Duration(hours: 24));
+
+  int startIndex = -1;
+  int endIndex = -1;
+
+  for (int i = 0; i < timeList.length; i++) {
+    DateTime time = DateTime.parse(timeList[i]);
+    if (time.isAfter(currentTime) && startIndex == -1) {
+      startIndex = i;
+    }
+    if (time.isAfter(endTime) && endIndex == -1) {
+      endIndex = i - 1;
+      break;
+    }
+  }
+
+  if (endIndex == -1) {
+    endIndex = timeList.length - 1;
+  }
+
+  return [startIndex, endIndex];
+}
+
+String formatTime(dynamic timeString) {
+  DateTime time = DateTime.parse(timeString).add(Duration(hours: 0));
+  String formattedTime = DateFormat('h a').format(time);
+  return formattedTime;
 }
