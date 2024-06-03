@@ -49,7 +49,7 @@ class _CityState extends State<City> {
                     child: ListView.builder(
                       itemCount: saved_citys.length,
                       itemBuilder: (context, index) {
-                        return CityCard(lat: saved_citys[index]["lat"], lot: saved_citys[index]["lon"],);
+                        return CityCard(lat: saved_citys[index]["lat"], lon: saved_citys[index]["lon"],);
                       },
                     ),
                   )
