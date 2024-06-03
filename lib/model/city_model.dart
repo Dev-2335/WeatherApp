@@ -16,12 +16,13 @@ Future<dynamic> cityData(var lat,var lon) async {
   var res = await http.get(Uri.parse("https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$lon&current=temperature_2m,is_day&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=1"));
   var dt=jsonDecode(res.body);
   print(dt);
+  var loc = await getCoordinatesToAddress({"latitude":lat,"longitude":lon});
   Map<String,dynamic> data={
     "curr": dt['current']['temperature_2m'],
     "high": dt['daily']['temperature_2m_max'],
     "low": dt['daily']['temperature_2m_min'],
-    // "name": dt[''][''],
-    // "state": dt[''][''],
+    "city": loc['city'],
+    "country": loc['country'],
     "cond": weatherCodes[dt['daily']['weather_code'][0]],
     "isday":dt['current']['is_day'],
   };
@@ -46,8 +47,8 @@ List<dynamic> saved_citys=[
     "lon":72.5714
   },
   {
-    "city":"Dubai",
-    "lat":25.2048,
-    "lon":55.2708
+    "city":"Amsterdam",
+    "lat":52.3676,
+    "lon":4.9041
   },
 ];
