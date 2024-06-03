@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weatherapp/comp/city_card.dart';
+import 'package:weatherapp/model/city_model.dart';
 
 class City extends StatefulWidget {
   const City({super.key});
@@ -13,6 +14,7 @@ class City extends StatefulWidget {
 }
 
 class _CityState extends State<City> {
+  var cityController= TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,6 +37,7 @@ class _CityState extends State<City> {
                   Container(
                     padding: EdgeInsets.only(left: 10,right: 10,top: 5),
                     child: CupertinoSearchTextField(
+                      controller: cityController,
                       style: TextStyle(color: Colors.white),
                       itemColor: Colors.white,
                       placeholderStyle: TextStyle(color: Colors.white,),
@@ -44,9 +47,9 @@ class _CityState extends State<City> {
                   SizedBox(height: 5,),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: 5,
+                      itemCount: saved_citys.length,
                       itemBuilder: (context, index) {
-                        return CityCard();
+                        return CityCard(lat: saved_citys[index]["lat"], lot: saved_citys[index]["lon"],);
                       },
                     ),
                   )

@@ -34,6 +34,8 @@ dependencies:
   intl: ^0.19.0
   http: ^1.2.1
   geocoding: ^3.0.0
+  http: ^1.2.1
+  loading_animation_widget: ^1.2.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -65,6 +67,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/images/large/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

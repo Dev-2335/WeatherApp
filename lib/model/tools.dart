@@ -1,5 +1,6 @@
 import 'package:geocoding/geocoding.dart';
 import 'package:intl/intl.dart';
+import 'package:weatherapp/model/condition.dart';
 
 var group0 = [800];
 var group1 = [801];
@@ -122,13 +123,13 @@ bool check(int code, List<int> group) {
   return false;
 }
 
-int codeConverter(int code) {
+Map<String,String>? codeConverter(int code) {
   for (int i = 0; i < groupList.length; i++) {
     if (check(code, groupList[i])) {
-      return groupCode[i];
+      return weatherCodes[groupCode[i]];
     }
   }
-  return -1;
+  return {};
 }
 
 Future<Map<String, double>> getAddressToCoordinates(String address) async {
