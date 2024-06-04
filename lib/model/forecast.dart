@@ -13,7 +13,7 @@ Future<Map<String, dynamic>> getForecastInfo(String address) async {
 
   final response = await http.get(Uri.parse(apiUrl));
   final Map<String, dynamic> data = json.decode(response.body);
-
+  // print("data " + data.toString());
   var sunriseTimeString = data['daily']['sunrise'][0],
       sunsetTimeString = data['daily']['sunset'][0];
 
@@ -24,29 +24,15 @@ Future<Map<String, dynamic>> getForecastInfo(String address) async {
     "maxTemp": data['daily']['temperature_2m_max'][1],
     "minTemp": data['daily']['temperature_2m_min'][1],
     "condition": weatherCodes[data['daily']['weather_code'][1]]!['description'],
-    "image": getDayOrNightImage(
-        sunriseTimeString, sunsetTimeString, data['daily']['weather_code'][1]),
+    "image": weatherCodes[data['daily']['weather_code'][1]]!['dayimg'],
     "precipitation":
         data['daily']['precipitation_probability_max'][1].toString() + '%',
     "uvIndex": data['daily']['uv_index_max'][1],
     "windSpeed": data['daily']['wind_speed_10m_max'][1].toString() + "km/h",
   };
-  final Map<String, dynamic> today = {
-    "date":
-        DateFormat('d MMM').format(DateTime.parse(data['daily']['time'][0])),
-    "maxTemp": data['daily']['temperature_2m_max'][0],
-    "minTemp": data['daily']['temperature_2m_min'][0],
-    "condition": weatherCodes[data['daily']['weather_code'][0]]!['description'],
-    "image": getDayOrNightImage(
-        sunriseTimeString, sunsetTimeString, data['daily']['weather_code'][0]),
-    "precipitation":
-        data['daily']['precipitation_probability_max'][0].toString() + '%',
-    "uvIndex": data['daily']['uv_index_max'][0],
-    "windSpeed": data['daily']['wind_speed_10m_max'][0].toString() + "km/h",
-  };
-  final List<Map<String, dynamic>> other = [];
 
-  for (int i = 2; i <=7; i++) {
+  final List<Map<String, dynamic>> other = [];
+  for (int i = 2; i < 7; i++) {
     other.add({
       "date":
           DateFormat('d MMM').format(DateTime.parse(data['daily']['time'][i])),
@@ -54,18 +40,13 @@ Future<Map<String, dynamic>> getForecastInfo(String address) async {
       "minTemp": data['daily']['temperature_2m_min'][i],
       "condition":
           weatherCodes[data['daily']['weather_code'][i]]!['description'],
-      "image": getDayOrNightImage(sunriseTimeString, sunsetTimeString,
-          data['daily']['weather_code'][i]),
+      "image": weatherCodes[data['daily']['weather_code'][i]]!['dayimg'],
     });
   }
+  // print(other);
 
-  Map<String, dynamic> finalData = {
-    "today": today,
-    "tomorrow": tomorrow,
-    "next5days": other
-  };
-
-  print(finalData);
-
+  Map<String, dynamic> finalData = {"tomorrow": tomorrow, "next5days": other};
+  // await getCurrentLocation();
+  // print("tommorow" + tomorrow.toString());
   return finalData;
 }
