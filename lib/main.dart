@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weatherapp/city.dart';
-import 'package:weatherapp/forecast.dart';
+import 'package:weatherapp/comp/hourlyTemp.dart';
+import 'package:weatherapp/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Forecast(),
+      home: HomeScreen(),
     );
   }
 }
