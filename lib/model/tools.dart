@@ -141,7 +141,7 @@ bool check(int code, List<int> group) {
   return false;
 }
 
-Map<String,String>? codeConverter(int code) {
+Map<String, String>? codeConverter(int code) {
   for (int i = 0; i < groupList.length; i++) {
     if (check(code, groupList[i])) {
       return weatherCodes[groupCode[i]];
@@ -179,4 +179,16 @@ String formatTime(dynamic timeString) {
   DateTime time = DateTime.parse(timeString).add(Duration(hours: 0));
   String formattedTime = DateFormat('h a').format(time);
   return formattedTime;
+}
+
+String getDayOrNightImage(
+    String sunriseTimeString, String sunsetTimeString, dynamic index) {
+  DateTime sunrise = DateTime.parse(sunriseTimeString);
+  DateTime sunset = DateTime.parse(sunsetTimeString);
+  DateTime now = DateTime.now();
+  if (now.isBefore(sunrise) || now.isAfter(sunset)) {
+    return weatherCodes[index]!['nightimg']!;
+  } else {
+    return weatherCodes[index]!['dayimg']!;
+  }
 }
