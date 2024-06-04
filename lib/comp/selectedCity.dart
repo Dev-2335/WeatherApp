@@ -23,18 +23,18 @@ class _SelectedCityState extends State<SelectedCity> {
             padding:
                 EdgeInsets.symmetric(horizontal: 5.0), // Adjust the spacing
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(25),
+              borderRadius: BorderRadius.circular(30),
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
                 child: Container(
                   height: 20,
                   width: 300,
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.6),
+                    color: Colors.white.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: Container(
                       child: Row(
                         children: [
@@ -45,20 +45,22 @@ class _SelectedCityState extends State<SelectedCity> {
                                 borderRadius: BorderRadius.circular(20),
                                 child: Image.asset("assets/images/img_2.png"),
                               ),
-                              height: 40,
+                              height: 70,
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(10.0),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 15.0, horizontal: 5.0),
                             child: Container(
                                 child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
                                   child: Text(
                                     'New Zealand',
                                     style: GoogleFonts.nunito(
                                       color: Colors.white,
-                                      fontSize: 20,
+                                      fontSize: 18,
                                     ),
                                   ),
                                 ),
@@ -67,7 +69,7 @@ class _SelectedCityState extends State<SelectedCity> {
                                     'Snowy',
                                     style: GoogleFonts.nunito(
                                       color: Colors.white,
-                                      fontSize: 15,
+                                      fontSize: 13,
                                     ),
                                   ),
                                 )
@@ -75,13 +77,13 @@ class _SelectedCityState extends State<SelectedCity> {
                             )),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 20.0),
                             child: Container(
                               child: Text(
-                                '9'+'°',
+                                '9' + '°',
                                 style: GoogleFonts.nunito(
                                   color: Colors.white,
-                                  fontSize: 45,
+                                  fontSize: 40,
                                 ),
                               ),
                             ),

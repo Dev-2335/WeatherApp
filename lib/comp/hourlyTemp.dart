@@ -22,17 +22,17 @@ class _HourlyTempState extends State<HourlyTemp> {
               (index) => Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.0), // Adjust the spacing
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(25),
+              borderRadius: BorderRadius.circular(28),
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
                 child: Container(
                   height: 10,
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.6),
+                    color: Colors.white.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 5.0),
+                    padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 0.0),
                     child: Container(
                       child: Column(
                         children: [
@@ -46,13 +46,13 @@ class _HourlyTempState extends State<HourlyTemp> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(20.0),
+                            padding: const EdgeInsets.all(10.0),
                             child: Container(
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20),
                                 child: Image.asset("assets/images/img_2.png"),
                               ),
-                              height: 40,
+                              height: 55,
                             ),
                           ),
 
