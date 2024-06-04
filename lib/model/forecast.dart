@@ -43,7 +43,7 @@ Future<Map<String, dynamic>> getForecastInfo(String address) async {
   };
   final List<Map<String, dynamic>> other = [];
 
-  for (int i = 2; i < 7; i++) {
+  for (int i = 2; i <=7; i++) {
     other.add({
       "date":
           DateFormat('d MMM').format(DateTime.parse(data['daily']['time'][i])),

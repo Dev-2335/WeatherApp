@@ -6,7 +6,8 @@ import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Weathercard extends StatefulWidget {
-  const Weathercard({super.key});
+  var data;
+  Weathercard({super.key,required this.data});
 
   @override
   State<Weathercard> createState() => _WeathercardState();
@@ -23,7 +24,7 @@ class _WeathercardState extends State<Weathercard> {
           filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
           child: Container(
             width: 380,
-            height: 260,
+            height: 350,
             decoration: BoxDecoration(
                 color: Colors.white.withOpacity(0.2),
                 borderRadius:
@@ -32,6 +33,7 @@ class _WeathercardState extends State<Weathercard> {
               padding: const EdgeInsets.all(0),
               child: Column(
                 children: [
+                  SizedBox(height: 30,),
                   Padding(
                     padding: const EdgeInsets.only(top: 4.0,left: 4,right: 4),
                     child: Row(
@@ -39,19 +41,19 @@ class _WeathercardState extends State<Weathercard> {
                       children: [
                         Container(
                           child: ClipRRect(
-                            child: Image.asset("assets/images/img_2.png"),
+                            child: Image.asset(widget.data['dayimg'],),
                           ),
                           height: 150,
                         ),
                         Column(
                           children: [
-                            Text("Tommorrow",style: GoogleFonts.nunito(fontSize: 15,color: Colors.white)),
-                            Text("Mostly Sunny",style: GoogleFonts.nunito(fontSize: 20,color: Colors.white)),
+                            Text("Tommorrow",style: GoogleFonts.nunito(fontSize: 17,color: Colors.white)),
+                            Text(widget.data['condition'],style: GoogleFonts.nunito(fontSize: 22   ,color: Colors.white)),
                             Row(children: [
-                              Text("30"+"°",style: GoogleFonts.nunito(fontSize: 43,color: Colors.white)),
+                              Text(widget.data['maxTemp'].toString()+"°",style: GoogleFonts.nunito(fontSize: 46,color: Colors.white,fontWeight: FontWeight.bold)),
                               Padding(
                                 padding: const EdgeInsets.only(top: 18.0),
-                                child: Text("/"+"30"+"°",style: GoogleFonts.nunito(fontSize: 21,color: Colors.white)),
+                                child: Text("/"+widget.data['minTemp'].toString()+"°",style: GoogleFonts.nunito(fontSize: 21,color: Colors.white)),
                               ),
                             ],)
 
@@ -62,6 +64,7 @@ class _WeathercardState extends State<Weathercard> {
                       ],
                     ),
                   ),
+                  SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -69,40 +72,42 @@ class _WeathercardState extends State<Weathercard> {
                         child: Column(children: [
                           Container(
                             child: ClipRRect(
-                              child: Image.asset("assets/images/img_2.png"),
+                              child: Image.asset("assets/images/umbrella.png"),
                             ),
-                            height: 45,
+                            height: 60,
                           ),
-                          Text("22"+"%",style: GoogleFonts.nunito(fontSize: 17,color: Colors.white)),
-                          Text("Precipation",style: GoogleFonts.nunito(fontSize: 13,color: Colors.white)),],),
+                          SizedBox(height: 3,),
+                          Text(widget.data['precipitation'].toString(),style: GoogleFonts.nunito(fontSize: 17,color: Colors.white,fontWeight: FontWeight.bold)),
+                          Text("Precipation",style: GoogleFonts.nunito(fontSize: 14,color: Colors.white)),],),
                       ),
                       Expanded(
                         child: Column(children: [
                           Container(
                             child: ClipRRect(
-                              child: Image.asset("assets/images/img_2.png"),
+                              child: Image.asset("assets/images/sun.png"),
                             ),
-                            height: 45,
+                            height: 60,
                           ),
-                          Text("18"+"%",style: GoogleFonts.nunito(fontSize: 17,color: Colors.white)),
-                          Text("UV",style: GoogleFonts.nunito(fontSize: 13,color: Colors.white)),],),
+                          SizedBox(height: 3,),
+                          Text(widget.data['uvIndex'].toString(),style: GoogleFonts.nunito(fontSize: 17,color: Colors.white,fontWeight: FontWeight.bold)),
+                          Text("UV",style: GoogleFonts.nunito(fontSize: 14,color: Colors.white)),],),
                       ),
                       Expanded(
                         child: Column(children: [
                           Container(
                             child: ClipRRect(
-                              child: Image.asset("assets/images/img_2.png"),
+                              child: Image.asset("assets/images/wind.png",color: Colors.white,),
                             ),
-                            height: 45,
+                            height: 60,
                           ),
-                          Text("22 "+"Km/h",style: GoogleFonts.nunito(fontSize: 17,color: Colors.white)),
-                          Text("Wind Speed",style: GoogleFonts.nunito(fontSize: 13,color: Colors.white)),],),
+                          SizedBox(height: 3,),
+                          Text(widget.data['windSpeed'].toString(),style: GoogleFonts.nunito(fontSize: 17,color: Colors.white,fontWeight: FontWeight.bold)),
+                          Text("Wind Speed",style: GoogleFonts.nunito(fontSize: 14,color: Colors.white)),],),
                       ),
 
 
                     ],
                   ),
-
                 ],
               ),
             ),
