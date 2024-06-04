@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Dayscard extends StatefulWidget {
-  const Dayscard({super.key});
+  var data;
+  Dayscard({super.key,required this.data});
 
   @override
   State<Dayscard> createState() => _DayscardState();
@@ -34,12 +35,12 @@ class _DayscardState extends State<Dayscard> {
                       padding: const EdgeInsets.only(left: 8),
                       child: Row(
                         children: [
-                          Expanded(child: Text("30 "+"Sept",style: GoogleFonts.nunito(fontSize: 15,color: Colors.white))),
+                          Expanded(child: Text(widget.data['date'],style: GoogleFonts.nunito(fontSize: 15,color: Colors.white))),
                         ],
                       ),
                     )
                   ],
-                ),flex: 2,),
+                ),flex: 3,),
               Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -48,16 +49,16 @@ class _DayscardState extends State<Dayscard> {
                         children: [
                           Container(
                             child: ClipRRect(
-                              child: Image.asset("assets/images/img_2.png"),
+                              child: Image.asset(widget.data['dayimg']),
                             ),
                             height: 40,
                           ),
-                          SizedBox(width: 5,),
-                          Expanded(child: Text("Thunderstrom",style: GoogleFonts.nunito(fontSize: 12,color: Colors.white))),
+                          SizedBox(width: 8,),
+                          Expanded(child: Text(widget.data['condition'],style: GoogleFonts.nunito(fontSize: 14,color: Colors.white))),
                         ],
                       )
                     ],
-                  ),flex: 3),
+                  ),flex: 5),
               Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -65,13 +66,13 @@ class _DayscardState extends State<Dayscard> {
                       Row(
                         mainAxisAlignment:  MainAxisAlignment.center,
                         children: [
-                          Text("+19"+"°",style: GoogleFonts.nunito(fontSize: 14,color: Colors.white)),
+                          Text(widget.data['maxTemp'].toString()+"°",style: GoogleFonts.nunito(fontSize: 15,color: Colors.white,fontWeight: FontWeight.bold)),
                           SizedBox(width: 15,),
-                          Text("+15"+"°",style: GoogleFonts.nunito(fontSize: 14,color: Colors.white)),
+                          Text(widget.data['minTemp'].toString()+"°",style: GoogleFonts.nunito(fontSize: 15,color: Colors.white,fontWeight: FontWeight.bold)),
                         ],
                       )
                     ],
-                  ),flex: 2),
+                  ),flex: 3),
 
 
 

@@ -3,8 +3,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:weatherapp/comp/Dayscard.dart';
 import 'package:weatherapp/comp/Weathercard.dart';
+import 'package:weatherapp/model/forecast.dart';
 
 
 class Forecast extends StatefulWidget {
@@ -30,23 +32,36 @@ class _ForecastState extends State<Forecast> {
             leadingWidth: 50,
             titleSpacing: 5,
           ),
-          body: Container(
-            child: Container  (
-              child: Column(
-                children: [
-                 Weathercard(),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: 6,
-                      itemBuilder: (context, index) {
-                        return Dayscard();
-                      },
+          body: FutureBuilder(
+            future: getForecastInfo("rajkot"),
+            builder: (context, snapshot){
+              print(snapshot.data);
+              if(snapshot.hasData){
+                return Container(
+                  child: Container  (
+                    child: Column(
+                      children: [
+                        Weathercard(data: snapshot.data!["tomorrow"],),
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: 5,
+                            itemBuilder: (context, index) {
+                              return Dayscard(data: snapshot.data!["next5days"][index],);
+                            },
+                          ),
+                        )
+                      ],
                     ),
-                  )
-                ],
-              ),
-            ),
+                  ),
 
+                );
+              }
+              else{
+                return Center(
+                        child: LoadingAnimationWidget.inkDrop(color: Colors.white, size: 50)
+                    );
+              }
+            }
           ),
         ),
       ),
