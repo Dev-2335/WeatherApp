@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:weatherapp/model/condition.dart';
 import 'package:weatherapp/model/tools.dart';
 
-Future<Map<String, dynamic>> getHourlyInfo(String address) async {
+Future<List<Map<String, dynamic>>> getHourlyInfo(String address) async {
   Map<String, double> coordinates = await getAddressToCoordinates(address);
   double lat = coordinates['latitude']!, log = coordinates['longitude']!;
   final String apiUrl =
@@ -25,5 +25,5 @@ Future<Map<String, dynamic>> getHourlyInfo(String address) async {
     });
   }
   print(hourlyData);
-  return data['hourly'];
+  return hourlyData;
 }
