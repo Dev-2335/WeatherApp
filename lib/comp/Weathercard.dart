@@ -48,8 +48,11 @@ class _WeathercardState extends State<Weathercard> {
                             Text("Tommorrow",style: GoogleFonts.nunito(fontSize: 15,color: Colors.white)),
                             Text("Mostly Sunny",style: GoogleFonts.nunito(fontSize: 20,color: Colors.white)),
                             Row(children: [
-                              Text("30"+"°",style: GoogleFonts.nunito(fontSize: 40,color: Colors.white)),
-                              Text("/"+"30"+"°",style: GoogleFonts.nunito(fontSize: 18,color: Colors.white)),
+                              Text("30"+"°",style: GoogleFonts.nunito(fontSize: 43,color: Colors.white)),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 18.0),
+                                child: Text("/"+"30"+"°",style: GoogleFonts.nunito(fontSize: 21,color: Colors.white)),
+                              ),
                             ],)
 
                           ],
