@@ -49,7 +49,7 @@ class _DayscardState extends State<Dayscard> {
                         children: [
                           Container(
                             child: ClipRRect(
-                              child: Image.asset(widget.data['dayimg']),
+                              child: Image.asset(widget.data['image']),
                             ),
                             height: 40,
                           ),
