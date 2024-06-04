@@ -21,13 +21,18 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
-                colors: [Colors.blue.shade400, Colors.blue.withGreen(105)])),
+                colors: [Colors.blue.shade400, Colors.blue.withGreen(90)])),
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
-            leading: IconButton(onPressed: () {
-
-            }, icon: Icon(Icons.menu_rounded,size: 35,),color: Colors.white,),
+            leading: IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.menu_rounded,
+                size: 35,
+              ),
+              color: Colors.white,
+            ),
             title: Text(
               "Rajkot",
               style: GoogleFonts.nunito(color: Colors.white, fontSize: 26),
@@ -62,8 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   Container(
                                     child: ClipRRect(
-                                      borderRadius:
-                                      BorderRadius.circular(20),
+                                      borderRadius: BorderRadius.circular(20),
                                       child: Image.asset(
                                           "assets/images/img_2.png"),
                                     ),
