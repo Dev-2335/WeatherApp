@@ -25,7 +25,10 @@ class _ForecastState extends State<Forecast> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
-            leading: Icon(CupertinoIcons.back,color: Colors.white,),
+            leading: InkWell(
+                onTap: () => Navigator.pop(context),
+                child: Icon(CupertinoIcons.back,color: Colors.white,)
+            ),
             title: Text("Forecast",style: GoogleFonts.nunito(color: Colors.white,fontSize: 26),),
             centerTitle: true,
             backgroundColor: Colors.transparent,

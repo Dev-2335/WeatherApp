@@ -32,7 +32,7 @@ class _WeathercardState extends State<Weathercard> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 30,
+                    height: 40,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 4.0, left: 4, right: 4),
@@ -84,7 +84,7 @@ class _WeathercardState extends State<Weathercard> {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 40,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

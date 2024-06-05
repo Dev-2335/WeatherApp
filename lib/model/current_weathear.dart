@@ -1,4 +1,4 @@
-import 'dart:convert';
+  import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
@@ -28,4 +28,5 @@ Future<dynamic> getCurrentWeather(String address) async {
         dt['daily']['sunset'][0], dt['current']['weather_code']),
   };
   print(data);
+  return data;
 }

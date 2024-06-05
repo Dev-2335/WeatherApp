@@ -23,7 +23,10 @@ class _CityState extends State<City> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
-            leading: Icon(CupertinoIcons.back,color: Colors.white,),
+            leading: InkWell(
+                child: Icon(CupertinoIcons.back,color: Colors.white,),
+                onTap: () => Navigator.pop(context),
+            ),
             title: Text("City",style: GoogleFonts.nunito(color: Colors.white,fontSize: 26),),
             centerTitle: true,
             backgroundColor: Colors.transparent,
