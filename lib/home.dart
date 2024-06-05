@@ -273,16 +273,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 style: GoogleFonts.nunito(
                                     color: Colors.white, fontSize: 15),
                               ),
-                            ),
-                            SizedBox(
-                              width: 240,
-                            ),
-                            Container(
-                                child: IconButton(
-                              icon: Icon(Icons.add),
-                              color: Colors.white,
-                              onPressed: () {},
-                            ))
+                            )
                           ],
                         ),
                       ),
