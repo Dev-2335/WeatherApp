@@ -9,7 +9,7 @@ Future<Map<String, dynamic>> getForecastInfo(String address) async {
   Map<String, double> coordinates = await getAddressToCoordinates(address);
   double lat = coordinates['latitude']!, log = coordinates['longitude']!;
   final String apiUrl =
-      'https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$log&daily=weather_code,temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max,sunrise,sunset,wind_speed_10m_max&timezone=auto';
+      'https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$log&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,precipitation_probability_max,wind_speed_10m_max&timezone=auto&forecast_days=14';
 
   final response = await http.get(Uri.parse(apiUrl));
   final Map<String, dynamic> data = json.decode(response.body);
@@ -32,7 +32,7 @@ Future<Map<String, dynamic>> getForecastInfo(String address) async {
   };
 
   final List<Map<String, dynamic>> other = [];
-  for (int i = 2; i < 7; i++) {
+  for (int i = 2; i < 9; i++) {
     other.add({
       "date":
           DateFormat('d MMM').format(DateTime.parse(data['daily']['time'][i])),

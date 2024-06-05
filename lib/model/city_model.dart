@@ -37,9 +37,9 @@ List<dynamic> saved_citys=[
     "lon":70.7932
   },
   {
-    "city":"Darshan",
-    "lat":22.4319,
-    "lon":70.7844
+    "city":"Dubai",
+    "lat":25.2048,
+    "lon":55.2708
   },
   {
     "city":"Ahemdabad",
