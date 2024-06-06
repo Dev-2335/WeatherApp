@@ -6,7 +6,9 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:weatherapp/model/hourlyInfo.dart';
 
 class HourlyTemp extends StatefulWidget {
-  const HourlyTemp({super.key});
+  final List<dynamic> hourlyInfo;
+
+  HourlyTemp({required this.hourlyInfo,super.key});
 
   @override
   State<HourlyTemp> createState() => _HourlyTempState();
