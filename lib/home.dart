@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
     };
   }
 
-    @override
+  @override
   Widget build(BuildContext context) {
 
     return SafeArea(
@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Icon(Icons.menu_rounded,color: Colors.white,size: 35,)
             ),
             title: Text(
-            widget.city.toString(),
+              widget.city.toString(),
               style: GoogleFonts.nunito(color: Colors.white, fontSize: 26),
             ),
             centerTitle: true,
@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(
-                  child: LoadingAnimationWidget.inkDrop(color: Colors.white, size: 50)
+                    child: LoadingAnimationWidget.inkDrop(color: Colors.white, size: 50)
                 );
               }
               else if (snapshot.hasError) {
@@ -148,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 borderRadius: BorderRadius.circular(25),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(18.0),
+                                                padding: const EdgeInsets.all(15.0),
                                                 child: Row(
                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                   children: [
@@ -324,7 +324,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(5.0),
-                            child: Container(height: 100, child: SelectedCity()),
+                            child: Container(height: 110,width: 1000, child: SelectedCity()),
                           ),
                         ],
                       ),
