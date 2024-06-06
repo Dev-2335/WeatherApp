@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weatherapp/home.dart';
+import 'package:weatherapp/intro.dart';
 import 'package:weatherapp/model/tools.dart';
 
 void main() {
@@ -22,8 +23,9 @@ class MyApp extends StatelessWidget {
         home: FutureBuilder<List<String>>(
           future: getCurrentCity(),
           builder: (context, snapshot) {
+            print(snapshot.data);
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator(); // or any other loading indicator
+              return Intro(); // or any other loading indicator
             } else if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else {

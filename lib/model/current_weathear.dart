@@ -19,7 +19,7 @@ Future<dynamic> getCurrentWeather(String address) async {
     'city': city,
     "condition": weatherCodes[dt['current']['weather_code']]!['description'],
     "temp": dt['current']['temperature_2m'],
-    "time": DateFormat('EEEE, d MMMM | hh:mm a')
+    "time": DateFormat('EEEE, d MMMM ')
         .format(DateTime.parse(dt['current']['time'])),
     "precipitation": "${dt['daily']['precipitation_probability_max'][0]}%",
     "humidity": "${dt['current']['relative_humidity_2m']}%",

@@ -84,9 +84,7 @@ class _HourlyTempState extends State<HourlyTemp> {
               },
             );
           } else {
-            return Center(
-                child: LoadingAnimationWidget.inkDrop(
-                    color: Colors.white, size: 50));
+            return Container();
           }
         });
   }
