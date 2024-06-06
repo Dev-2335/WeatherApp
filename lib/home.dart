@@ -66,10 +66,15 @@ class _HomeScreenState extends State<HomeScreen> {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(
                   child: LoadingAnimationWidget.inkDrop(color: Colors.white, size: 50)
-              );
-              } else if (snapshot.hasError) {
+                );
+              }
+              else if (snapshot.hasError) {
                 return Center(child: Text('Error loading weather data', style: GoogleFonts.nunito(color: Colors.white)));
-              } else if (snapshot.hasData) {
+              }
+              else if (snapshot.hasData) {
+                var currentWeather = snapshot.data!['currentWeather'];
+                var hourlyInfo = snapshot.data!['hourlyInfo'];
+
                 return ListView(children: [
                   Padding(
                     padding: const EdgeInsets.all(10.0),
@@ -261,9 +266,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 );
                               }
                               else{
-                                return Center(
-                                  // child: LoadingAnimationWidget.inkDrop(color: Colors.white, size: 50)
-                                );
+                                return Container();
                               }
                             },
                           ),
@@ -298,7 +301,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Container(height: 170, child: HourlyTemp()),
+                            child: Container(height: 170, child: HourlyTemp(hourlyInfo: [hourlyInfo],)),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(9.0),
