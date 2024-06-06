@@ -67,7 +67,7 @@ class _SelectedCityState extends State<SelectedCity> {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
-                                          vertical: 15.0, horizontal: 5.0),
+                                          vertical: 18.0, horizontal: 5.0),
                                       child: Container(
                                           child: Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,13 +94,13 @@ class _SelectedCityState extends State<SelectedCity> {
                                           )),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                       child: Container(
                                         child: Text(
                                           snapshot.data['curr'].toString()+ '°',
                                           style: GoogleFonts.nunito(
                                             color: Colors.white,
-                                            fontSize: 40,
+                                            fontSize: 30,
                                           ),
                                         ),
                                       ),
