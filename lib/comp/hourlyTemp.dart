@@ -17,13 +17,14 @@ class HourlyTemp extends StatefulWidget {
 class _HourlyTempState extends State<HourlyTemp> {
   @override
   Widget build(BuildContext context) {
+    print("  data:  ${widget.hourlyInfo}");
     return FutureBuilder(
         future: getHourlyInfo('rajkot'),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: snapshot.data!.length,
+              itemCount: widget.hourlyInfo.length,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 5.0),
@@ -46,7 +47,7 @@ class _HourlyTempState extends State<HourlyTemp> {
                               children: [
                                 Container(
                                   child: Text(
-                                    snapshot.data![index]['time'],
+                                    widget.hourlyInfo[index]['time'],
                                     style: GoogleFonts.nunito(
                                       color: Colors.white,
                                       fontSize: 18,
@@ -59,14 +60,15 @@ class _HourlyTempState extends State<HourlyTemp> {
                                     height: 55,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(20),
-                                      child: Image.asset(snapshot.data![index]
-                                          ['condition']['dayimg']),
+                                      child: Image.asset(
+                                          widget.hourlyInfo[index]['condition']
+                                              ['dayimg']),
                                     ),
                                   ),
                                 ),
                                 Container(
                                   child: Text(
-                                    '${snapshot.data![index]['temp']}°',
+                                    '${widget.hourlyInfo[index]['temp']}°',
                                     style: GoogleFonts.nunito(
                                       color: Colors.white,
                                       fontSize: 15,

@@ -10,6 +10,15 @@ import 'package:weatherapp/forecast.dart';
 import 'package:weatherapp/model/current_weathear.dart';
 import 'package:weatherapp/model/hourlyInfo.dart';
 
+Future<Map<String, dynamic>> fetchWeatherData(String city) async {
+  var currentWeather = await getCurrentWeather(city);
+  var hourlyInfo = await getHourlyInfo(city);
+  return {
+    'currentWeather': currentWeather,
+    'hourlyInfo': hourlyInfo,
+  };
+}
+
 class HomeScreen extends StatefulWidget {
   var city = 'Rajkot';
   HomeScreen({super.key, city}) {
@@ -23,15 +32,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Future<Map<String, dynamic>> fetchWeatherData() async {
-    var currentWeather = await getCurrentWeather(widget.city.toString());
-    var hourlyInfo = await getHourlyInfo(widget.city.toString());
-    return {
-      'currentWeather': currentWeather,
-      'hourlyInfo': hourlyInfo,
-    };
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
             titleSpacing: 5,
           ),
           body: FutureBuilder(
-            future: fetchWeatherData(),
+            future: fetchWeatherData(widget.city),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(
@@ -363,7 +363,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: SizedBox(
                                 height: 170,
                                 child: HourlyTemp(
-                                  hourlyInfo: [hourlyInfo],
+                                  hourlyInfo: hourlyInfo,
                                 )),
                           ),
                           Padding(
