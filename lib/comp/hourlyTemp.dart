@@ -8,7 +8,7 @@ import 'package:weatherapp/model/hourlyInfo.dart';
 class HourlyTemp extends StatefulWidget {
   final List<dynamic> hourlyInfo;
 
-  HourlyTemp({required this.hourlyInfo,super.key});
+  const HourlyTemp({required this.hourlyInfo, super.key});
 
   @override
   State<HourlyTemp> createState() => _HourlyTempState();
@@ -20,14 +20,13 @@ class _HourlyTempState extends State<HourlyTemp> {
     return FutureBuilder(
         future: getHourlyInfo('rajkot'),
         builder: (context, snapshot) {
-          // print(snapshot.data);
           if (snapshot.hasData) {
             return ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
                   // Adjust the spacing
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(28),
@@ -56,19 +55,18 @@ class _HourlyTempState extends State<HourlyTemp> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(10.0),
-                                  child: Container(
+                                  child: SizedBox(
+                                    height: 55,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(20),
                                       child: Image.asset(snapshot.data![index]
                                           ['condition']['dayimg']),
                                     ),
-                                    height: 55,
                                   ),
                                 ),
                                 Container(
                                   child: Text(
-                                    snapshot.data![index]['temp'].toString() +
-                                        '°',
+                                    '${snapshot.data![index]['temp']}°',
                                     style: GoogleFonts.nunito(
                                       color: Colors.white,
                                       fontSize: 15,

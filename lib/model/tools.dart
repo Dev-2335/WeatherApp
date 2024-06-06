@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
@@ -12,8 +15,10 @@ Future<Map<String, double>> getAddressToCoordinates(String address) async {
   return coordinates;
 }
 
-Future<Map<String, String>> getCoordinatesToAddress(Map<String, double> coordinates) async {
-  List<Placemark> placemarks = await placemarkFromCoordinates(coordinates['latitude']!, coordinates['longitude']!);
+Future<Map<String, String>> getCoordinatesToAddress(
+    Map<String, double> coordinates) async {
+  List<Placemark> placemarks = await placemarkFromCoordinates(
+      coordinates['latitude']!, coordinates['longitude']!);
   Map<String, String> Address = {
     "country": placemarks.reversed.last.country.toString(),
     "city": placemarks.reversed.last.locality.toString()
@@ -23,7 +28,7 @@ Future<Map<String, String>> getCoordinatesToAddress(Map<String, double> coordina
 
 List<int> getRangeIndices(List<dynamic> timeList) {
   DateTime currentTime = DateTime.now();
-  DateTime endTime = currentTime.add(Duration(hours: 24));
+  DateTime endTime = currentTime.add(const Duration(hours: 24));
 
   int startIndex = -1;
   int endIndex = -1;
@@ -47,7 +52,7 @@ List<int> getRangeIndices(List<dynamic> timeList) {
 }
 
 String formatTime(dynamic timeString) {
-  DateTime time = DateTime.parse(timeString).add(Duration(hours: 0));
+  DateTime time = DateTime.parse(timeString).add(const Duration(hours: 0));
   String formattedTime = DateFormat('h a').format(time);
   return formattedTime;
 }
@@ -65,7 +70,6 @@ String getDayOrNightImage(
 }
 
 Future<List<String>>? getCurrentCity() async {
-
   LocationPermission permission = await Geolocator.checkPermission();
   if (permission == LocationPermission.denied) {
     permission = await Geolocator.requestPermission();
@@ -75,9 +79,37 @@ Future<List<String>>? getCurrentCity() async {
       desiredAccuracy: LocationAccuracy.high);
 
   List<Placemark> placemarks =
-  await placemarkFromCoordinates(position.latitude, position.longitude);
+      await placemarkFromCoordinates(position.latitude, position.longitude);
 
   String city = placemarks[0].locality!;
-  print(city);
   return [city];
+}
+
+Future<List<String>> getCityAutocompleteSuggestions(
+    String input, String apiKey) async {
+  final url = 'https://maps.googleapis.com/maps/api/place/autocomplete/json'
+      '?input=$input&types=(cities)&key=$apiKey';
+
+  final response = await http.get(Uri.parse(url));
+
+  if (response.statusCode == 200) {
+    final data = json.decode(response.body);
+    if (data['status'] == 'OK') {
+      final suggestions = data['predictions'] as List;
+      final cityCountryList = suggestions
+          .map((suggestion) {
+            final city = suggestion['terms'].first['value'];
+            final country = suggestion['terms'].last['value'];
+            return '$city, $country';
+          })
+          .toSet()
+          .toList();
+      return cityCountryList;
+    } else {
+      throw Exception(
+          'Error retrieving autocomplete suggestions: ${data['status']}');
+    }
+  } else {
+    throw Exception('Failed to load autocomplete suggestions');
+  }
 }
