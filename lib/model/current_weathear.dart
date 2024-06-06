@@ -1,4 +1,4 @@
-  import 'dart:convert';
+import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
@@ -19,7 +19,7 @@ Future<dynamic> getCurrentWeather(String address) async {
     'city': city,
     "condition": weatherCodes[dt['current']['weather_code']]!['description'],
     "temp": dt['current']['temperature_2m'],
-    "time": DateFormat('EEEE, d MMMM | hh:mm a')
+    "time": DateFormat('EEEE, d MMMM ')
         .format(DateTime.parse(dt['current']['time'])),
     "precipitation": "${dt['daily']['precipitation_probability_max'][0]}%",
     "humidity": "${dt['current']['relative_humidity_2m']}%",
@@ -27,6 +27,6 @@ Future<dynamic> getCurrentWeather(String address) async {
     "img": getDayOrNightImage(dt['daily']['sunrise'][0],
         dt['daily']['sunset'][0], dt['current']['weather_code']),
   };
-  print(data);
+  // print(data);
   return data;
 }

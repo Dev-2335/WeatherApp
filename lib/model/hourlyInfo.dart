@@ -24,6 +24,6 @@ Future<List<Map<String, dynamic>>> getHourlyInfo(String address) async {
       "temp": data['hourly']['temperature_2m'][i]
     });
   }
-  print(hourlyData);
+  // print(hourlyData);
   return hourlyData;
 }
