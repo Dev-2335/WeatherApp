@@ -6,10 +6,9 @@ import 'package:weatherapp/home.dart';
 import 'package:weatherapp/model/city_model.dart';
 
 class CityCard extends StatefulWidget {
-  var lat;
-  var lon;
+  String address;
 
-  CityCard({super.key, required this.lat, required this.lon});
+  CityCard({super.key, required this.address});
 
   @override
   State<CityCard> createState() => _CityCardState();
@@ -18,11 +17,10 @@ class CityCard extends StatefulWidget {
 class _CityCardState extends State<CityCard> {
   @override
   Widget build(BuildContext context) {
-    var img;
+    String img;
     return FutureBuilder(
-        future: cityData(widget.lat, widget.lon),
+        future: cityData(widget.address),
         builder: (context, snapshot) {
-          // print(snapshot.data);
           if (snapshot.hasData) {
             if (snapshot.data['isday'] == 1) {
               img = snapshot.data['cond']['dayimg'].toString();
@@ -31,12 +29,13 @@ class _CityCardState extends State<CityCard> {
             }
             return InkWell(
               onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomeScreen(
-                      city: snapshot.data['city'],
-                    ),
-                  )),
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomeScreen(
+                    city: snapshot.data['city'],
+                  ),
+                ),
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: ClipRRect(
@@ -61,17 +60,17 @@ class _CityCardState extends State<CityCard> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  Text(snapshot.data['curr'].toString() + "°C",
+                                  Text("${snapshot.data['curr']}°C",
                                       style: GoogleFonts.nunito(
                                           fontSize: 50, color: Colors.white)),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 20,
                                   ),
-                                  Container(
+                                  SizedBox(
+                                    height: 100,
                                     child: ClipRRect(
                                       child: Image.asset(img),
                                     ),
-                                    height: 100,
                                   ),
                                 ],
                               ),
@@ -80,19 +79,13 @@ class _CityCardState extends State<CityCard> {
                               padding: const EdgeInsets.only(left: 23.0),
                               child: Row(
                                 children: [
-                                  Text(
-                                      "H:" +
-                                          snapshot.data['high'][0].toString() +
-                                          "°C",
+                                  Text("H:${snapshot.data['high'][0]}°C",
                                       style: GoogleFonts.nunito(
                                           fontSize: 15, color: Colors.white70)),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
-                                  Text(
-                                      "L:" +
-                                          snapshot.data['low'][0].toString() +
-                                          "°C",
+                                  Text("L:${snapshot.data['low'][0]}°C",
                                       style: GoogleFonts.nunito(
                                           fontSize: 15, color: Colors.white70))
                                 ],

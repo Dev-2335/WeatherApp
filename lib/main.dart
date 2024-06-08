@@ -23,9 +23,8 @@ class MyApp extends StatelessWidget {
         home: FutureBuilder<List<String>>(
           future: getCurrentCity(),
           builder: (context, snapshot) {
-            print(snapshot.data);
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Intro(); // or any other loading indicator
+              return const Intro(); // or any other loading indicator
             } else if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else {

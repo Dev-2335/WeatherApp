@@ -8,7 +8,7 @@ import 'package:weatherapp/model/hourlyInfo.dart';
 class HourlyTemp extends StatefulWidget {
   final List<dynamic> hourlyInfo;
 
-  HourlyTemp({required this.hourlyInfo,super.key});
+  const HourlyTemp({required this.hourlyInfo, super.key});
 
   @override
   State<HourlyTemp> createState() => _HourlyTempState();
@@ -17,17 +17,17 @@ class HourlyTemp extends StatefulWidget {
 class _HourlyTempState extends State<HourlyTemp> {
   @override
   Widget build(BuildContext context) {
+    print("  data:  ${widget.hourlyInfo}");
     return FutureBuilder(
         future: getHourlyInfo('rajkot'),
         builder: (context, snapshot) {
-          // print(snapshot.data);
           if (snapshot.hasData) {
             return ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: snapshot.data!.length,
+              itemCount: widget.hourlyInfo.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
                   // Adjust the spacing
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(28),
@@ -47,7 +47,7 @@ class _HourlyTempState extends State<HourlyTemp> {
                               children: [
                                 Container(
                                   child: Text(
-                                    snapshot.data![index]['time'],
+                                    widget.hourlyInfo[index]['time'],
                                     style: GoogleFonts.nunito(
                                       color: Colors.white,
                                       fontSize: 18,
@@ -56,19 +56,19 @@ class _HourlyTempState extends State<HourlyTemp> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(10.0),
-                                  child: Container(
+                                  child: SizedBox(
+                                    height: 55,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(20),
-                                      child: Image.asset(snapshot.data![index]
-                                          ['condition']['dayimg']),
+                                      child: Image.asset(
+                                          widget.hourlyInfo[index]['condition']
+                                              ['dayimg']),
                                     ),
-                                    height: 55,
                                   ),
                                 ),
                                 Container(
                                   child: Text(
-                                    snapshot.data![index]['temp'].toString() +
-                                        '°',
+                                    '${widget.hourlyInfo[index]['temp']}°',
                                     style: GoogleFonts.nunito(
                                       color: Colors.white,
                                       fontSize: 15,

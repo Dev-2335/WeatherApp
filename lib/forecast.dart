@@ -26,7 +26,7 @@ class _ForecastState extends State<Forecast> {
           appBar: AppBar(
             leading: InkWell(
                 onTap: () => Navigator.pop(context),
-                child: Icon(
+                child: const Icon(
                   CupertinoIcons.back,
                   color: Colors.white,
                 )),
@@ -42,7 +42,6 @@ class _ForecastState extends State<Forecast> {
           body: FutureBuilder(
               future: getForecastInfo("rajkot"),
               builder: (context, snapshot) {
-                // print(snapshot.data);
                 if (snapshot.hasData) {
                   return Container(
                     child: Container(
