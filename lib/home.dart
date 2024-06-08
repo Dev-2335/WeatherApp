@@ -11,6 +11,7 @@ import 'package:weatherapp/comp/selectedCity.dart';
 import 'package:weatherapp/forecast.dart';
 import 'package:weatherapp/model/current_weathear.dart';
 import 'package:weatherapp/model/hourlyInfo.dart';
+import 'package:weatherapp/model/tools.dart';
 // import 'package:weatherapp/model/tools.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -38,6 +39,32 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Widget saved;
+    Widget menu;
+    if(widget.city==current_location){
+      saved=Container();
+    }
+    else{
+      saved=Row(
+        children: [
+          Icon(CupertinoIcons.bookmark,color: Colors.white,),
+          SizedBox(width: 10,)
+        ],
+      );
+    }
+
+    if(widget.city==current_location){
+      menu=InkWell(
+          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => City(),)),
+          child: Icon(Icons.menu_rounded,color: Colors.white,size: 35,)
+      );
+    }
+    else{
+      menu=InkWell(
+        onTap: () => Navigator.pop(context),
+        child: Icon(CupertinoIcons.back,color: Colors.white,),
+      );
+    }
 
     return SafeArea(
       child: Container(
@@ -47,10 +74,8 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
-            leading: InkWell(
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => City(),)),
-                child: Icon(Icons.menu_rounded,color: Colors.white,size: 35,)
-            ),
+            leading: menu,
+            actions: [saved],
             title: Text(
               widget.city.toString(),
               style: GoogleFonts.nunito(color: Colors.white, fontSize: 26),

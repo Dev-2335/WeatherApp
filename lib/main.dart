@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
             } else {
               // Assuming getCurrentCity returns a list with at least one element
               String city = snapshot.data![0];
+              current_location =city;
               return HomeScreen(city: city);
             }
           },
