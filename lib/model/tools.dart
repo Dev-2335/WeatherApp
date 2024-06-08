@@ -113,3 +113,5 @@ Future<List<String>> getCityAutocompleteSuggestions(
     throw Exception('Failed to load autocomplete suggestions');
   }
 }
+
+var current_location;
