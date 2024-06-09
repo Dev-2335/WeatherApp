@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -7,6 +8,7 @@ import 'package:weatherapp/city.dart';
 import 'package:weatherapp/comp/hourlyTemp.dart';
 import 'package:weatherapp/comp/selectedCity.dart';
 import 'package:weatherapp/forecast.dart';
+import 'package:weatherapp/model/city_model.dart';
 import 'package:weatherapp/model/current_weathear.dart';
 import 'package:weatherapp/model/hourlyInfo.dart';
 import 'package:weatherapp/model/tools.dart';
@@ -39,15 +41,65 @@ class _HomeScreenState extends State<HomeScreen> {
     Widget saved;
     Widget menu;
     if(widget.city==current_location){
-      saved=Container();
-    }
-    else{
-      saved=Row(
+      saved=const Row(
         children: [
-          Icon(CupertinoIcons.bookmark,color: Colors.white,),
+          Icon(CupertinoIcons.location_solid,color: Colors.white,),
           SizedBox(width: 10,)
         ],
       );
+    }
+    else{
+      var check;
+      var del;
+      for(int i=0;i<saved_citys.length;i++){
+        if(saved_citys[i]['city']==widget.city){
+          check=1;
+          del=i;
+          break;
+        }
+      }
+      if(check==1){
+        saved=InkWell(
+          onTap: () { 
+            delete_city(del);
+            setState(() {
+              saved=const Row(
+              children: [
+                Icon(CupertinoIcons.location_solid,color: Colors.white,),
+                SizedBox(width: 10,)
+              ],
+            );
+            });
+          },
+          child: const Row(
+            children: [
+              Icon(CupertinoIcons.bookmark_fill,color: Colors.white,),
+              SizedBox(width: 10,)
+            ],
+          ),
+        );
+      }
+      else{
+        saved=InkWell(
+          onTap: (){
+            save_city(widget.city);
+            setState(() {
+              saved=const Row(
+              children: [
+                Icon(CupertinoIcons.bookmark_fill,color: Colors.white,),
+                SizedBox(width: 10,)
+              ],
+            );
+            });
+          },
+          child: const Row(
+            children: [
+              Icon(CupertinoIcons.bookmark,color: Colors.white,),
+              SizedBox(width: 10,)
+            ],
+          ),
+        );
+      }
     }
 
     if(widget.city==current_location){

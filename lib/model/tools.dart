@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
+import 'package:weatherapp/model/city_model.dart';
 import 'package:weatherapp/model/condition.dart';
 
 Future<Map<String, double>> getAddressToCoordinates(String address) async {
@@ -115,3 +116,18 @@ Future<List<String>> getCityAutocompleteSuggestions(
 }
 
 var current_location;
+
+Future<void> save_city(String name) async {
+  var cord=await getAddressToCoordinates(name);
+  Map<dynamic,dynamic> data={};
+  data['city']=name;
+  data['lat']=cord['latitude'];
+  data['lon']=cord['longitude'];
+  saved_citys.add(data);
+  print("-----------------------added-------------------");
+}
+
+void delete_city(int del){
+  saved_citys.remove(saved_citys[del]);
+  print("-----------------------deleted-------------------");
+}
