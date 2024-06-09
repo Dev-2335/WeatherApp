@@ -17,13 +17,16 @@ Future<List<Map<String, dynamic>>> getHourlyInfo(String address) async {
   var range = await getRangeIndices(data['hourly']['time']);
 
   List<Map<String, dynamic>> hourlyData = [];
+  
   for (int i = range[0] - 1; i <= range[1]; i++) {
+    print(data['hourly']['time'][i]);
     hourlyData.add({
       "time": formatTime(data['hourly']['time'][i]),
       "condition": weatherCodes[data['hourly']['weather_code'][i]],
-      "temp": data['hourly']['temperature_2m'][i]
+      "temp": data['hourly']['temperature_2m'][i],
+      "img": getDayOrNightImage_2(data['hourly']['time'][i],data['hourly']['weather_code'][i])
     });
   }
-  // print(hourlyData);
+  print(hourlyData);
   return hourlyData;
 }
