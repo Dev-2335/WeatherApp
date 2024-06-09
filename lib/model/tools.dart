@@ -131,3 +131,19 @@ void delete_city(int del){
   saved_citys.remove(saved_citys[del]);
   print("-----------------------deleted-------------------");
 }
+
+String getDayOrNightImage_2(String givenDateTimeString, dynamic index) {
+  // Parse the given date and time
+  DateTime givenDateTime = DateTime.parse(givenDateTimeString);
+
+  // Set 6am and 6pm times
+  DateTime sixAM = DateTime(givenDateTime.year, givenDateTime.month, givenDateTime.day, 6, 0);
+  DateTime sixPM = DateTime(givenDateTime.year, givenDateTime.month, givenDateTime.day, 18, 0);
+
+  // Determine if it's day or night
+  if (givenDateTime.isBefore(sixAM) || givenDateTime.isAfter(sixPM)) {
+    return weatherCodes[index]!['nightimg']!;
+  } else {
+    return weatherCodes[index]!['dayimg']!;
+  }
+}

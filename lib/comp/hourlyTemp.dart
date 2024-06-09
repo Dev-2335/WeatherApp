@@ -18,11 +18,7 @@ class _HourlyTempState extends State<HourlyTemp> {
   @override
   Widget build(BuildContext context) {
     print("  data:  ${widget.hourlyInfo}");
-    return FutureBuilder(
-        future: getHourlyInfo('rajkot'),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
+    return ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: widget.hourlyInfo.length,
               itemBuilder: (context, index) {
@@ -61,8 +57,7 @@ class _HourlyTempState extends State<HourlyTemp> {
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(20),
                                       child: Image.asset(
-                                          widget.hourlyInfo[index]['condition']
-                                              ['dayimg']),
+                                          widget.hourlyInfo[index]['img']),
                                     ),
                                   ),
                                 ),
@@ -85,9 +80,5 @@ class _HourlyTempState extends State<HourlyTemp> {
                 );
               },
             );
-          } else {
-            return Container();
-          }
-        });
   }
 }
