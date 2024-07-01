@@ -38,11 +38,19 @@ Install the Weather Application on your device with these steps:
 ## 🛠 Team Member
 
 **Dev Patel** 
+
+
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dev-patel-257298266?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)
 **Viraj Patel**
+
+
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/viraj-patel-0627212a7?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)
 **Rutvik Dangar**
+
+
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/rutvikdangar?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)
 **Nisarg Kaneriya**
+
+
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/nisarg-kaneriya-30318223a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)
 
