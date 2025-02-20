@@ -20,7 +20,7 @@ Install the Weather Application on your device with these steps:
 
 ```bash
 1. Clone the repository:
-   git clone https://github.com/your_username/weather-app.git
+   git clone https://github.com/Dev-2335/WeatherApp.git
 ```
 ```bash
 2. Navigate to the project directory:
